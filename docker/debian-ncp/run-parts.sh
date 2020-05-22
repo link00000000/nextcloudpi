@@ -39,12 +39,12 @@ chmod +x /usr/local/sbin/update-rc.d
 
 # Iterate only over 000* entries which might setup environment
 for file in $( ls -1v /etc/services-enabled.d | grep ^000.* ); do
-  /etc/services-enabled.d/"$file" start "$1"
+  bash /etc/services-enabled.d/"$file" start "$1"
 done
 
 # Iterate over remaining entries
 for file in $( ls -1v /etc/services-enabled.d | grep -v ^000.* ); do
-  /etc/services-enabled.d/"$file" start "$1"
+  bash /etc/services-enabled.d/"$file" start "$1"
 done
 
 # wait for trap from 'docker stop'
